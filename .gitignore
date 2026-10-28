@@ -1,0 +1,18 @@
+data/
+.env
+node_modules/
+test-output/
+
+# Configuración local y credenciales
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Archivos generados y del equipo
+*.log
+coverage/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

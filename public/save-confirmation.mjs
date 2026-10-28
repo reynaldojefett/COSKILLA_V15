@@ -1,0 +1,7 @@
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let pending=null;
+export function confirmSave({title='¿Estás seguro de guardar este avance?',description='',details=[]}={}){
+ if(pending)return Promise.resolve(false);let dialog=document.querySelector('#save-advance-dialog');if(!dialog){dialog=document.createElement('dialog');dialog.id='save-advance-dialog';dialog.className='save-advance-dialog';document.body.append(dialog);}
+ dialog.innerHTML=`<div class="save-confirm-heading"><span>GUARDAR AVANCE</span><h2>${esc(title)}</h2></div><p>${esc(description)}</p>${details.length?'<ul>'+details.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ul>':''}<p class="hint">Sí incorpora los datos al avance, las curvas y el dashboard. Si eliges No, el formulario conserva el borrador.</p><div class="save-confirm-actions"><button type="button" class="button secondary" data-save-choice="no">No</button><button type="button" class="button primary" data-save-choice="yes">Sí, guardar</button></div>`;
+ return new Promise(resolve=>{const finish=value=>{dialog.close();dialog.onclick=null;dialog.oncancel=null;dialog.onkeydown=null;pending=null;resolve(value);};pending=finish;dialog.onclick=e=>{const b=e.target.closest('[data-save-choice]');if(b)finish(b.dataset.saveChoice==='yes');};dialog.oncancel=e=>{e.preventDefault();finish(false);};dialog.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();}};dialog.showModal();dialog.querySelector('[data-save-choice=no]').focus();});
+}

@@ -1,0 +1,10 @@
+import {monthCalendar} from './agenda-calendar.mjs';
+import {workDate,selectWorkDate,browseWorkMonth} from './work-date.mjs';
+import {displayDate,inputDate} from './ui-dates.mjs';
+export function workCalendar(p,reports,on){const v=workDate(p);return `<details class="shared-calendar"><summary><span>Fecha de consulta</span><strong>${displayDate(on)}</strong><b>Elegir fecha ▦</b></summary><div class="shared-calendar-body"><p>Esta fecha se comparte con agenda, resumen, partidas, almacén y dashboard.</p><label>Ir a una fecha<input type="text" data-work-date inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" value="${displayDate(on)}" aria-label="Fecha compartida (día/mes/año)"></label>${monthCalendar(p,reports,{date:on,month:v.month}).replaceAll('data-agenda-','data-work-')}</div></details>`;}
+export function initWorkCalendar(ctx){
+ document.addEventListener('pointerdown',e=>document.querySelectorAll('.shared-calendar[open]').forEach(v=>{if(!v.contains(e.target))v.open=false;}));document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.shared-calendar[open]').forEach(v=>v.open=false);});
+ const change=on=>{try{selectWorkDate(ctx.project(),on);ctx.setCutoff(on);ctx.render();}catch(e){ctx.toast(e.message);}};
+ document.addEventListener('change',e=>{if(e.target.hasAttribute('data-work-date')){const on=inputDate(e.target.value);if(!on){ctx.toast('Escribe una fecha válida como 23/10/2026.');return;}change(on);}if(e.target.hasAttribute('data-work-month-select')){browseWorkMonth(ctx.project(),e.target.value);ctx.render();document.querySelector('.shared-calendar').open=true;}});
+ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.workDay)change(b.dataset.workDay);if(b.dataset.workMonth){const p=ctx.project(),v=workDate(p),d=new Date(v.month+'-01T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+Number(b.dataset.workMonth));browseWorkMonth(p,d.toISOString().slice(0,7));ctx.render();document.querySelector('.shared-calendar').open=true;}});
+}

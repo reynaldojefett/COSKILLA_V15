@@ -1,0 +1,3 @@
+export const equipmentCount=rows=>(rows||[]).reduce((n,v)=>n+Number(v.count??1),0);
+export const equipmentHours=rows=>(rows||[]).reduce((n,v)=>n+(v.hoursPerUnit!==undefined?Number(v.count??1)*Number(v.hoursPerUnit||0):Number(v.hours||0)),0);
+export function resourceTotals(saved){const nominal=saved.attendanceMode==='nominal'||!saved.attendanceMode&&saved.attendance?.length,people=nominal?(saved.attendance||[]).filter(v=>v.present).length:(saved.personnel||[]).reduce((n,v)=>n+Number(v.count||0),0),expected=nominal?(saved.attendance||[]).length:(saved.personnel||[]).reduce((n,v)=>n+Number(v.expected??v.count??0),0);return {people,expected,absent:Math.max(0,expected-people),equipment:equipmentCount(saved.machinery),hours:equipmentHours(saved.machinery)};}

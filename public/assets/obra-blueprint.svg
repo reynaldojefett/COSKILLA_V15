@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="290" viewBox="0 0 620 290" fill="none">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#9dc0c8" stroke-opacity=".12"/></pattern></defs>
+<rect width="620" height="290" rx="12" fill="#173847"/><rect width="620" height="290" fill="url(#grid)"/>
+<g stroke="#96bcc5" stroke-width="2"><path d="M30 233H590M170 230V110H335V230M170 151H335M170 192H335M212 110V230M253 110V230M294 110V230M160 110H345"/><path d="M170 110L197 88H309L335 110"/><path d="M73 232V38H86V232M66 57H371L284 31H80L57 57M86 38L284 57M86 57L164 31M164 31L234 57M234 57L284 31M57 57H38V71H71M330 58V92M321 92H339V102H321Z"/></g>
+<g stroke="#e28a50" stroke-width="3"><path d="M73 93L86 111L73 129L86 147L73 165L86 183L73 201L86 219M73 57L86 75L73 93"/><path d="M55 232H107M55 238H107"/></g>
+<g fill="#527e8b"><rect x="181" y="120" width="20" height="20" rx="2"/><rect x="221" y="162" width="20" height="20" rx="2"/><rect x="263" y="203" width="20" height="20" rx="2"/></g>
+<rect x="384" y="90" width="196" height="126" rx="8" fill="#214754" stroke="#416574"/>
+<path d="M402 111H559M402 138H559M402 165H559M402 192H559M410 105V200M455 105V200M500 105V200M545 105V200" stroke="#72949c" stroke-opacity=".3"/>
+<path d="M406 191C434 191 439 177 456 156S489 129 509 118S540 111 560 109" stroke="#92b5bf" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M406 191C433 191 444 180 460 163S484 139 510 125S539 120 558 114" stroke="#f59350" stroke-width="3"/>
+<circle cx="510" cy="125" r="5" fill="#f59350"/><path d="M158 252H343M158 248V256M343 248V256" stroke="#72949c"/><path d="M367 74H584" stroke="#e28a50" stroke-width="3"/>
+<g fill="#96bcc5" font-family="Segoe UI,Arial,sans-serif" font-size="10" letter-spacing="2"><text x="388" y="64">CONTROL DE AVANCE</text><text x="402" y="210">PLAN</text><text x="492" y="210" fill="#f59350">EJECUCIÓN</text><text x="224" y="271">OBRA EN CAMPO</text></g></svg>

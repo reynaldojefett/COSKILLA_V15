@@ -1,0 +1,2 @@
+export function progressComparison(actual,planned,{known=true}={}){if(!known||actual===null||planned===null)return 'Comparación pendiente de datos';const number=n=>new Intl.NumberFormat('es-PE',{maximumFractionDigits:2}).format(n);return `Registrado ${number(actual)}% · programado ${number(planned)}%`;}
+export function progressDirection(actual,planned,{known=true}={}){if(!known)return 'Sin avances confirmados';return actual>planned+.1?'Por encima del avance programado':actual<planned-.1?'Por debajo del avance programado':'Según el avance programado';}
